@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내가 빼빼로를 받아야 하는 이유</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#d6202b;
+  --red-dark:#a8141d;
+  --choco:#4a2418;
+  --biscuit:#e8c48a;
+  --paper:#fff7f2;
+  --ink:#2a1510;
+  --line:#e9d5cb;
+  --max:36;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  font-size:17px;line-height:1.65;
+}
+.hero{
+  background:var(--red);color:#fff;
+  padding:44px 22px 36px;
+  position:relative;overflow:hidden;
+}
+.hero-inner{max-width:560px;margin:0 auto;position:relative}
+.date{
+  font-family:"Black Han Sans","Apple SD Gothic Neo",sans-serif;
+  font-size:92px;line-height:.9;letter-spacing:-2px;margin:0;
+  color:var(--choco);
+}
+h1{
+  font-family:"Black Han Sans","Apple SD Gothic Neo",sans-serif;
+  font-weight:400;font-size:38px;line-height:1.2;margin:14px 0 14px;letter-spacing:-.5px;
+}
+.lead{margin:0;font-size:17px;max-width:30em}
+.deadline{
+  display:inline-block;margin-top:18px;padding:6px 14px;
+  border:2px solid #fff;border-radius:999px;font-size:15px;
+}
+main{max-width:560px;margin:0 auto;padding:30px 22px 70px}
+.notice{
+  background:#fff;border:2px dashed var(--red);border-radius:12px;
+  padding:10px 14px;font-size:14px;margin-bottom:22px;display:none;
+}
+.notice.show{display:block}
+.field{margin-bottom:26px}
+label,.label{display:block;font-size:16px;margin-bottom:8px;color:var(--choco)}
+.row{display:flex;gap:12px}
+.row .field{flex:1}
+.row .field.small{flex:0 0 96px}
+input[type=text],input[type=number],textarea{
+  width:100%;font:inherit;color:var(--ink);background:#fff;
+  border:2px solid var(--line);border-radius:12px;padding:12px 14px;
+}
+textarea{resize:vertical;min-height:150px}
+input:focus,textarea:focus{outline:3px solid var(--red);outline-offset:1px;border-color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{
+  display:inline-block;padding:8px 14px;background:#fff;border:2px solid var(--line);
+  border-radius:999px;cursor:pointer;font-size:15px;
+}
+.chips input:checked + span{background:var(--choco);border-color:var(--choco);color:#fff}
+.chips input:focus-visible + span{outline:3px solid var(--red);outline-offset:2px}
+
+/* 글자 수 = 초코 코팅 */
+.stick-wrap{margin-top:12px}
+.stick{
+  position:relative;height:30px;border-radius:15px;background:var(--biscuit);
+  overflow:hidden;box-shadow:inset 0 -3px 0 rgba(0,0,0,.08);
+}
+.coat{
+  position:absolute;left:0;top:0;bottom:0;
+  width:calc(var(--p,0) * 84%);
+  background:var(--choco);border-radius:15px 0 0 15px;
+  transition:width .15s ease-out;
+}
+.coat::after{
+  content:"";position:absolute;right:-1px;top:0;bottom:0;width:18px;
+  background:var(--choco);border-radius:0 15px 15px 0;
+}
+.coat::before{
+  content:"";position:absolute;left:10px;right:24px;top:6px;height:4px;border-radius:2px;
+  background:rgba(255,255,255,.18);z-index:1;
+}
+.count{display:flex;justify-content:space-between;font-size:14px;margin-top:6px;color:#7a5a4e}
+.count b{color:var(--choco);font-weight:400}
+
+button.submit{
+  width:100%;font:inherit;font-size:19px;color:#fff;background:var(--red);
+  border:0;border-radius:14px;padding:16px;cursor:pointer;
+  box-shadow:0 5px 0 var(--red-dark);
+}
+button.submit:active{transform:translateY(4px);box-shadow:0 1px 0 var(--red-dark)}
+button.submit:focus-visible{outline:3px solid var(--choco);outline-offset:3px}
+button.submit:disabled{background:#c9a9a0;box-shadow:0 5px 0 #a88c84;cursor:default}
+.error{color:var(--red-dark);font-size:15px;margin:0 0 14px;min-height:1.4em}
+
+.done{display:none;text-align:center;padding:30px 0}
+.done.show{display:block}
+.done h2{
+  font-family:"Black Han Sans","Apple SD Gothic Neo",sans-serif;font-weight:400;
+  font-size:34px;margin:0 0 10px;color:var(--red);
+}
+.done .stick{max-width:320px;margin:20px auto}
+.done .stick .coat{--p:1}
+.done p{margin:0 0 8px}
+.link{background:none;border:0;font:inherit;color:var(--choco);text-decoration:underline;cursor:pointer;margin-top:14px}
+@media (prefers-reduced-motion:reduce){.coat{transition:none}}
+@media (min-width:600px){
+  .hero{padding:64px 22px 48px}
+  .date{font-size:130px}
+  h1{font-size:48px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="date">11/11</p>
+    <h1>내가 빼빼로를<br>받아야 하는 이유</h1>
+    <p class="lead">솔직하게, 웃기게, 감동적으로. 가장 마음에 남는 이유를 쓴 친구에게 크런키 빼빼로가 갑니다.</p>
+    <span class="deadline" id="deadline"></span>
+  </div>
+</header>
+
+<main>
+  <div class="notice" id="notice">미리보기 모드예요. 지금은 응모 내용이 저장되지 않아요.</div>
+
+  <form id="form" novalidate>
+    <div class="row">
+      <div class="field small">
+        <label for="num">번호</label>
+        <input id="num" type="number" inputmode="numeric" min="1" max="60" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="name">이름</label>
+        <input id="name" type="text" maxlength="10" autocomplete="off">
+      </div>
+    </div>
+
+
+    <div class="field">
+      <label for="reason">내가 빼빼로를 받아야 하는 이유</label>
+      <textarea id="reason" maxlength="200" placeholder="예: 시험 기간에 급식을 남기지 않고 다 먹었기 때문입니다."></textarea>
+      <div class="stick-wrap" aria-hidden="true">
+        <div class="stick"><div class="coat" id="coat"></div></div>
+      </div>
+      <div class="count"><span id="hint">초코 코팅을 채워 보세요</span><b id="counter">0 / 200</b></div>
+    </div>
+
+    <p class="error" id="error" role="alert"></p>
+    <button class="submit" id="submitBtn" type="submit">빼빼로 응모하기</button>
+  </form>
+
+  <section class="done" id="done" aria-live="polite">
+    <h2>응모 완료!</h2>
+    <div class="stick"><div class="coat"></div></div>
+    <p id="doneMsg"></p>
+    <p>당첨 결과는 선생님이 알려 줄 거예요.</p>
+    <button class="link" id="again" type="button">다른 이유로 다시 쓰기</button>
+  </section>
+</main>
+
+<script>
+/* ===== 선생님이 바꿀 부분 ===== */
+const CONFIG = {
+  // 구글 앱스 스크립트 웹 앱 URL (apps-script.gs 설명 참고). 비워 두면 미리보기 모드.
+  SCRIPT_URL: "",
+  DEADLINE: "11월 10일(화) 하교 전까지 응모",
+  MAX: 200,
+  MIN: 10
+};
+/* ============================ */
+
+const $ = id => document.getElementById(id);
+const form = $("form"), reason = $("reason"), coat = $("coat");
+
+$("deadline").textContent = CONFIG.DEADLINE;
+if (!CONFIG.SCRIPT_URL) $("notice").classList.add("show");
+reason.maxLength = CONFIG.MAX;
+
+function updateCount(){
+  const n = reason.value.length;
+  coat.style.setProperty("--p", Math.min(n / CONFIG.MAX, 1));
+  $("counter").textContent = n + " / " + CONFIG.MAX;
+  $("hint").textContent =
+    n === 0 ? "초코 코팅을 채워 보세요" :
+    n >= CONFIG.MAX ? "코팅 완성!" :
+    n < CONFIG.MIN ? "조금만 더 써 주세요" : "좋아요, 더 써도 돼요";
+}
+reason.addEventListener("input", updateCount);
+updateCount();
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const num = $("num").value.trim();
+  const name = $("name").value.trim();
+  const text = reason.value.trim();
+    const err = $("error");
+  err.textContent = "";
+
+  if (!num || !name){ err.textContent = "번호와 이름을 입력해 주세요."; return; }
+  if (text.length < CONFIG.MIN){ err.textContent = CONFIG.MIN + "자 이상 써 주세요."; return; }
+
+  const btn = $("submitBtn");
+  btn.disabled = true; btn.textContent = "보내는 중…";
+
+  try{
+    if (CONFIG.SCRIPT_URL){
+      await fetch(CONFIG.SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {"Content-Type": "text/plain;charset=utf-8"},
+        body: JSON.stringify({num, name, reason: text})
+      });
+    } else {
+      await new Promise(r => setTimeout(r, 500));
+    }
+    form.style.display = "none";
+    $("doneMsg").textContent = name + "님의 이유가 접수되었어요.";
+    $("done").classList.add("show");
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }catch(_){
+    err.textContent = "전송에 실패했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.";
+  }finally{
+    btn.disabled = false; btn.textContent = "빼빼로 응모하기";
+  }
+});
+
+$("again").addEventListener("click", () => {
+  reason.value = ""; updateCount();
+  $("done").classList.remove("show");
+  form.style.display = "";
+  reason.focus();
+});
+</script>
+</body>
+</html>
